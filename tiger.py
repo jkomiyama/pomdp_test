@@ -108,14 +108,26 @@ def calcValue(b, tree):
       value = max(value, valuetemp)
     #print "leafvalue=",value
     return value
-if True:
+
+def getVal(b0):
   #printTree(Theta0)
   #tree = Theta0
-  #tree = nextTheta(Theta0, "Theta1")
+  tree = nextTheta(Theta0, "Theta1")
   #tree = nextTheta(nextTheta(Theta0, "Theta1"), "Theta2")
-  tree = nextTheta(nextTheta(nextTheta(Theta0, "Theta1"), "Theta2"), "Theta3")
-  printTree(tree)
+  #tree = nextTheta(nextTheta(nextTheta(Theta0, "Theta1"), "Theta2"), "Theta3")
+  #tree = nextTheta(nextTheta(nextTheta(nextTheta(Theta0, "Theta1"), "Theta2"), "Theta3"), "Theta4")
+  #printTree(tree)
   #b = (0.5, 0.5)
-  b = (1.0, 0.0)
+  b = (b0, 1.0-b0)
   value = calcValue(b, tree)
-  print "value("+str(b)+")="+str(value)
+  #print "value("+str(b)+")="+str(value)
+  return value
+
+if True:
+  import pylab as pl
+  import numpy as np
+ 
+  b = [x*0.025 for x in range(41)]
+  v = map(getVal, b)
+  pl.plot(b, v)
+  pl.show()
